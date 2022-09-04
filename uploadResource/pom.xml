@@ -20,7 +20,7 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>com.github.mcchampions</groupId>
+            <groupId>com.github.minecraftchampions</groupId>
             <artifactId>DodoOpenJava</artifactId>
             <version>v7.4</version>
             <scope>compile</scope>
