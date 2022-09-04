@@ -71,7 +71,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.mcchampions</groupId>
+            <groupId>com.github.auxg</groupId>
             <artifactId>DodoOpenJava</artifactId>
             <version>v7.4</version>
             <scope>compile</scope>
