@@ -1,7 +1,7 @@
 package me.qscbm.uploadRes;
 
-import io.github.mcchampions.DodoOpenJava.Utils;
-import io.github.mcchampions.DodoOpenJava.api.ResourceApi;
+import io.github.minecraftchampions.dodoopenjava.api.v2.ResourceApi;
+import io.github.minecraftchampions.dodoopenjava.utils.BaseUtil;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -72,13 +72,13 @@ public class Main extends JFrame {
     class event2 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String Parm;
+            String param;
             try {
-                Parm = ResourceApi.uploadResource(Utils.Authorization("75477943", "NzU0Nzc5NDM.CVXvv719.2p-7fs7n2fOKottrW8JTCZFnLH9qjMWgV-vfh3Z2qGA"),file.getPath(), false);
+                param = ResourceApi.uploadResource(BaseUtil.Authorization("12345678", "AbC0Def1GHI.JKLmn234.5o-6pq7r8sTUvwxyZ9ABCDEfGH0ijKLmM-opq1R2stA"), file.getPath()).toString();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            text.setText(Parm);
+            text.setText(param);
         }
     }
 }

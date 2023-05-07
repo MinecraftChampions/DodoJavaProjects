@@ -1,0 +1,4 @@
+# 机器人机器人鉴权Token
+botToken: "token"
+# 机器人唯一标识
+botClientId: "clientId"

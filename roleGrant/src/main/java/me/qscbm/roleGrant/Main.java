@@ -1,53 +1,48 @@
 package me.qscbm.roleGrant;
 
-import com.alibaba.fastjson2.JSONObject;
-import io.github.mcchampions.DodoOpenJava.Event.Event;
-import io.github.mcchampions.DodoOpenJava.Event.EventManage;
-import io.github.mcchampions.DodoOpenJava.Event.Listener;
-import io.github.mcchampions.DodoOpenJava.api.Role;
-import okhttp3.*;
-import okio.ByteString;
+import io.github.minecraftchampions.dodoopenjava.api.v2.RoleApi;
+import io.github.minecraftchampions.dodoopenjava.event.EventHandler;
+import io.github.minecraftchampions.dodoopenjava.event.EventManage;
+import io.github.minecraftchampions.dodoopenjava.event.Listener;
+import io.github.minecraftchampions.dodoopenjava.event.events.v2.MessageReactionEvent;
+import io.github.minecraftchampions.dodoopenjava.utils.BaseUtil;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.util.Objects;
 
-public class Main implements Listener {
+public class Main implements Listener {//实现Listener不能少
     public static void main(String[] args) {
-        EventManage e = new EventManage();
-        e.register(new Main(),"按照文档填");
+        EventManage.registerEvents(new Main(), BaseUtil.Authorization("12345678", "AbC0Def1GHI.JKLmn234.5o-6pq7r8sTUvwxyZ9ABCDEfGH0ijKLmM-opq1R2stA"));
+        //注册事件监听器
     }
 
-    @Override
-    public void event(Event ev) {
-        String jsontext = ev.getParam();
-        String islandId = JSONObject.parseObject(jsontext).getJSONObject("data").getJSONObject("eventBody").getString("islanId");
-        String id = JSONObject.parseObject(jsontext).getJSONObject("data").getJSONObject("eventBody").getString("dodoId");
-        String Emoji = JSONObject.parseObject(jsontext).getJSONObject("data").getJSONObject("eventBody").getJSONObject("reactionEmoji").getString("id");
-        // 判断事件类型
-        if(JSONObject.parseObject(jsontext).getJSONObject("data").getString("eventType") == "3001") {
-            // 判断触发事件是否发生在指定messageId上（表情反应的那条消息的ID）
-            if (JSONObject.parseObject(jsontext).getJSONObject("data").getJSONObject("eventBody").getJSONObject("reactionTarget").getString("id") == "消息ID") {
-                // 判断是否为指定的表情列表
-                switch (Emoji) {
-                    //表情ID是否为“48”（就是那个0，方框中里面有个0的那个）
-                    case "48":
-                        try {
-                            Role.setRoleMemberAdd("按照文档填写",islandId,id,"身份组1的ID",true);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        break;
-                    //表情ID是否为“49”（就是那个1，方框中里面有个1的那个）
-                    case "49":
-                        try {
-                            Role.setRoleMemberAdd("按照文档填写",islandId,id,"身份组2的ID",true);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        break;
-                    //如果都不是，则不做处理
-                    default:
-                        break;
+    @EventHandler //注解不能少
+    public void onMessageEvent(MessageReactionEvent e) {//MessageReactionEvent就是消息表情反应事件
+        String Emoji = e.getReactionEmojiId();//获取Emoji的ID
+        String islandId = e.getIslandSourceId();//获取群号
+        String id = e.getDodoSourceId();//获取Dodo号
+        // 判断触发事件是否发生在指定messageId上（表情反应的那条消息的ID）
+        if (Objects.equals(e.getMessageId(), "消息ID")) {
+            // 判断是否为指定的表情列表
+            switch (Emoji) {
+                //表情ID是否为“48”（就是那个0，方框中里面有个0的那个）
+                case "48" -> {
+                    try {
+                        RoleApi.addRoleMember("按照文档填写", islandId, id, "身份组1的ID");
+                    } catch (IOException en) {
+                        throw new RuntimeException(en);
+                    }
+                }
+                //表情ID是否为“49”（就是那个1，方框中里面有个1的那个）
+                case "49" -> {
+                    try {
+                        RoleApi.addRoleMember("按照文档填写", islandId, id, "身份组2的ID");
+                    } catch (IOException en) {
+                        throw new RuntimeException(en);
+                    }
+                }
+                //如果都不是，则不做处理
+                default -> {
                 }
             }
         }

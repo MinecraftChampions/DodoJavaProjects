@@ -22,9 +22,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.minecraftchampions</groupId>
-            <artifactId>DodoOpenJava</artifactId>
-            <version>v7.4</version>
+            <groupId>top.qscraft</groupId>
+            <artifactId>dodoopenjava</artifactId>
+            <version>2.1.3</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

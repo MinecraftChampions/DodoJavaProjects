@@ -8,14 +8,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class config {
     public static File configFile;
 
     static Configuration config;
 
+    //加载配置文件
+    //BC的配置文件对对象的操作和我们是一样的，但是初始化的其他的都不一样
+    //几乎一样的是bukkit
     public static void loadConfig() throws IOException {
         if (!DodoChat.getInstance().getDataFolder().exists()) {
             DodoChat.getInstance().getDataFolder().mkdir();
