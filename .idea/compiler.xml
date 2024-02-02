@@ -6,16 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ChatFilter" />
+        <module name="UploadResource" />
         <module name="JoinAndLeaveMessage" />
-        <module name="roleGrant" />
-        <module name="chatFilter" />
-        <module name="PermissionDetection" />
-        <module name="uploadResource" />
-        <module name="DoDoChat" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="chatFilter" target="18" />
+      <module name="DoDoChat" target="18" />
       <module name="DoDoChat (1)" target="18" />
+      <module name="PermissionDetection" target="18" />
+      <module name="RoleGrant" target="16" />
+      <module name="roleGrant" target="18" />
+      <module name="uploadResource" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
